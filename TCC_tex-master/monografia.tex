@@ -1,0 +1,148 @@
+
+\documentclass[monografia]{tcc-abntex2}
+%http://www.eac.ufsm.br/pesquisa/qualidade-sonora
+
+
+% ---
+% PACOTES
+% ---
+%\usepackage{cmap}				% Mapear caracteres especiais no PDF
+\usepackage{pslatex}			% Usa a fonte Times News Roman			
+\usepackage{makeidx}            % Cria o indice
+\usepackage{hyperref}  			% Controla a formação do índice
+\usepackage{lastpage}			% Usado pela Ficha catalográfica
+\usepackage{indentfirst}		% Indenta o primeiro parágrafo de cada seção.
+\usepackage{nomencl} 			% Lista de simbolos
+\usepackage{graphicx}			% Inclusão de gráficos
+\usepackage{lipsum}				% para geração de dummy text
+\usepackage{float}
+\usepackage[printonlyused]{acronym}
+\usepackage{algpseudocode,algorithm}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+%\usepackage{vaucanson-g}
+%\usepackage[table]{xcolor}
+
+%criar um novo estilo de cabeçalhos e rodapés
+\makepagestyle{tccraiza}
+  %cabeçalhos
+  \makeevenhead{tccraiza} %pagina par
+     {}
+     {}
+     {\thepage}
+  \makeoddhead{tccraiza} %pagina ímpar ou com oneside
+     {}
+     {}
+     {\thepage}
+  \makeheadrule{tccraiza}{\textwidth}{\normalrulethickness}
+  % rodapé
+  %\makeevenfoot{tccraiza}
+     %{rodapé par à esquerda} %pagina par
+     %{centro \thepage}
+     %{direita} 
+  %\makeoddfoot{tccraiza} %pagina ímpar ou com oneside
+    % {rodapé ímpar/onside à esquerda}
+     %{centro \thepage}
+     %{direita}
+
+
+% ----------------------------------------------------------
+\makeindex
+% ----------------------------------------------------------
+% Compila a lista de abreviaturas e siglas
+% ----------------------------------------------------------
+\makenomenclature
+% ----------------------------------------------------------
+% Inserir folha de aprovação digitalizada com as assinaturas
+% ----------------------------------------------------------
+%\inserirfolhaaprovacao{folhaAprovacao.pdf}
+
+
+% ----------------------------------------------------------
+% Início do documento
+% ----------------------------------------------------------
+
+\begin{document}
+
+
+
+% ----------------------------------------------------------
+% ELEMENTOS PRÉ-TEXTUAIS
+% ----------------------------------------------------------
+\pretextual
+\pagenumbering{roman}
+% Insere Capa, Folha de rosto e folha de aprovação (se inserida).
+\include{preTextual/capa}
+%\include{preTextual/contracapa}
+%\include{preTextual/page3}
+%\include{preTextual/banca}
+%\include{preTextual/dedicatoria}
+%\include{preTextual/agradecimentos}
+% ---
+%\maketitle
+
+\include{resumo}
+\sumario
+\listasiglas{abrev/Abreviaturas}
+\listatabelas
+\listafiguras
+
+
+% ----------------------------------------------------------
+% ELEMENTOS TEXTUAIS
+% ----------------------------------------------------------
+\pagenumbering{arabic} % volta à numeração arábica
+\pagestyle{tccraiza}
+% ----------------------------------------------------------
+% Introdução, Desenvolvimento e Conclusão
+% ----------------------------------------------------------
+\include{cap/01_introducao}
+\include{cap/02_fundamentacaoTeorica}
+\include{cap/sinalFala}
+\include{cap/mfcc}
+\include{cap/HMM}
+\include{cap/RedesNeurais}
+%\include{cap/resultados}
+
+
+%capitulo intitulado conclusao e obrigatorio
+%\include{cap/05_conclusao}
+
+
+% ---
+% Finaliza a parte no bookmark do PDF, para que se inicie o bookmark na raiz
+% ---
+\bookmarksetup{startatroot}% 
+
+% ----------------------------------------------------------
+% ELEMENTOS PÓS-TEXTUAIS
+% ----------------------------------------------------------
+\postextual
+
+% ----------------------------------------------------------
+% Referências bibliográficas
+% ----------------------------------------------------------
+\bibliography{bib/tfg_referencias}
+
+
+% ----------------------------------------------------------
+% Glossário
+% ----------------------------------------------------------
+%\glossary
+%
+% ----------------------------------------------------------
+% Apêndices e Anexos
+% ----------------------------------------------------------
+%\begin{apendicesenv}
+% include(extra/00_apendice)
+%\end{apendicesenv}
+%\begin{anexosenv}
+%\include{extra/01_anexo}
+%\end{anexosenv}
+
+
+%finaliza o documento 
+\end{document}
+
+

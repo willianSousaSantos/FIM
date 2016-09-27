@@ -1,0 +1,20 @@
+\chapter{Resultados}
+\thispagestyle{plain}
+\quad Os métodos de estudados de filtragem de sinal, codificação de áudio e reconhecimento de fala foram implementados em linguagem computacional C, complilada  com GCC no sistema operacional Linux Ubuntu 12.04 LTS.
+
+\section{Estrutura do Código}
+
+\quad A estrtura das funções implementadas é mostrada na Figura \ref{fig:codigo}. 
+
+\subsection{Captura e filtragem do sinal}
+
+\quad A API utilizada para a captura de áudio foi a ALSA por meio de funções. Uma estrutura de programa básico usando esta API esta sempre na forma:
+
+\begin{verbatim}
+Abre uma interface para captura ou reprodução
+setar os parâmetros de hardware
+	Enquanto houver dados a serem processados:
+		ler dados PCM
+		ou escrever dados PCM
+Fecha a interface
+\end{verbatim}

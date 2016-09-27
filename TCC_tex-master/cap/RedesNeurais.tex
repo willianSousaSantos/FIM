@@ -1,0 +1,71 @@
+\chapter{Redes Neurais}
+%quad = paragrafo \\ pula linha
+\quad  (Uma rede neural é um processador maciçamente paralelamente distribuido constituido de unidades de processamento simples, que têm a propensão natural para  armazenar conhecimento experimental e torná-lo disponievel para o uso. Ela se assemelha ao cérebro por dois aspectos:
+\begin {enumerate}
+	\item O conhecimento é adquirido pela rede a partir de seu ambiente através de um processo de aprendizagem.
+	\item	Forças de conexão entre neurônios, conhecidos como pesos sinápticos, são utilizados para armazenar o conhecimento adquirido.)
+\end{enumerate}
+
+\section {Componentes Principais de um mapa auto-organizavel}
+
+\quad  De forma geral, pode-se dizer que um mapa auto-organizavel, é estruturado pelo neurônio vencedor de uma competição, ditadada por uma função discriminante de cada iteração, tambem chamada de época. Essa competição pode ser em neurônio contra todos os neurônios da rede, ou, neurônio contra um grupo de neurônios da rede. Um das metas de um algoritmo auto-organizado é descobrir padrões significativos ou caracteristicas nos dados de entrada e fazer esta descoberta  sem um professor para ara auxiliar . O algoritmo possui um conjunto de regras de natureza local. O termo “local” significa que a modificação aplicada ao peso sináptico(sinapse é ..?coilocar glosssario) de um neurônio é confinada a vizinhança imediata daquele neurônio.
+
+\section { Alguns principios intuitivos de auto-organização}
+
+\quad “Ordem global pode surgir de interações locais”. Turing, 1952.
+
+	A organização da rede acontece em dois niveis diferentes, que interagem entre si na forma de um laço de realimentação. Os dois niveis são:
+\begin{itemize}
+\item  Atividade: Certos padrões de atividade são produzidos por uma determinada rede em resposta a sinais de entrada.
+\item Conectividade: Forças de conexão dos pesos sinápticos da rede, são modificadas em resposta a sinais neurais dos padrões de atividade, devido à plasticidade sináptica que é uma propriedade que permite que materiais sejam deformados sem que haja rachadura ou rompimento. 
+\end{itemize}
+A seguir os princípios.
+\begin{itemize}
+\item  Modificaçoes dos pesos  sinápticos tendem a se auto-amplificar.Para estabilizar o sistema, deve haver alguma forma de competição por recursos”limitados” . Especificamente, um aumento na força de algumas sinapses da rede deve ser compensados por uma redução em outras sinapses.
+\item  A limitação de recursos leva à competição entre sinapses e com isso à seleção das sinapses  que crescem mais vigorosamente(i.e, as mais ajustadas) às custas das outras sinapses(i.e, as menos ajustadas).
+\item As modificações em pesos sinápticos tendem a cooperar.
+\item Ordem e estrutura nos padrões de informação representam informação redundante que é adquirida pela rede neural na forma de conhecimento, que é um pré-requisito necessário para a aprendizagem.
+\end{itemize}
+\section {Dois modelos básicos de mapemanto de características}
+	Usaremos aqui o modelo de kohonen, pois ele foi o que  se mostrou generico, ou seja, além de não possuir tanta enfase na parte biológica, ele se mantém bem flexivel do ponto de vista computacional.
+
+\subsection {Mapa Auto-Organizavel}
+\quad Recebe como entrada um padrão de dados discretos, ao quais, é modelado em forma uni ou bidimensional.Logo após de ocorrer a atribuição de valores dos pesos sinapticos, há três processos que devem ocorrer:
+\begin {enumerate}
+
+	\item Competição: Para cada padrão de entrada os neuronios são levadas à competição, dado uma função discriminante(que é?). E o neurônio com maior peso particular ao fim da função discriminante é considerado vencedor.
+	\item Cooperação: O neurônio vencedor determina a localização espacial de uma vizinhança.
+	\item Adpatação Sináptica: permite que os neurônios excitados, aumentem seus valores individuais da função discriminante, em relação ao padrão de entrada, através de ajustes em seus pesos sinapticos .
+\end{enumerate}
+
+\section {Resumo do algoritmo SOM de Kohonen}
+\begin {itemize}
+\item Um espaço de entrada continuo de padrões de ativação que são gerados de acordo com uma certa distribuição de probabilidade.
+\item Uma topologia da grade na forma de uma grade de neuronios, que define um espaço de saida discreto.
+\item Uma função de vizinhança varivel no tempo, $\displaystyle h _{j,i(x)}(n)$ que é definida em torno de um neuronio vencedor i(x).
+\item Um parametro da taxa de aprendizagemm $\eta$(n) que começa em um valor inicial $\eta _0$ e então diminui gradualmente com o  tempo, n, mas nunca vai a zero.
+\end{itemize}
+	Após a inicialização há três passos basicos envolvidos.Estes passos são repetidos até a formação do mapa de características estar completa. O algoritmo é resumido como segue: 
+\begin {enumerate}
+\item Inicialização: Escolha valores aleatórios  para os vetores de peso iniciais $w_j(0)$, a única restrição aqui é para que os $w _j(0)$, sejam diferentes para $j= 1 \ldots l $, onde $l$ é o numero de neurônios na grade. Pode ser desejável manter a magnitude dos pesos pequena.
+\item Amostragem: retire uma amostra $x$ do espaço de entrada com uma certa probabilidade. O vetor $x$ representa o padrão de ativação que é aplicado à grade. A dimensão do vetor $x$ é igual a $m$.
+\item  Casamento por similaridade. Encontre o neurônio com o melhor casamento(vencedor) $i(x)$ no passo de tempo $n$ usando o critério da mínima distância euclidiana: $$
+\displaystyle  i(x) = arg\min\limits_{j}\Big \Arrowvert x(n) - w_j\Big \Arrowvert, \qquad j = 1,\ldots, l
+$$
+\item Atualização. Ajuste vetores e peso sináptico de todos os neurônios usando a formula de atualização $$
+\displaystyle  w_j(n+1) = w_j(n)+ \eta(n)h_{j,i(x)} (n)(x(n) - w_j(n) )
+$$
+\item  Continuação. Continue com o passo 2 até que não sejam observadas modificações significativos no mapa de caracteristicas.
+\end{enumerate}
+\section {Propriedades do mapa de caracteristicas.}
+	Uma vez que o algoritmo SOM tenha convergido, o mapa de características calculado pelo algoritmo mostra características estatísticas importantes do espaço de entrada.
+\begin {enumerate}
+\item Aproximação do Espaço de Entrada: O mapa de caracteristicas  $\phi$ , representado pelo conjunto de vetores de pesos sinápticos {$w_j$} no espaço de saida $\mathscr{A}$, fornece uma boa aproximação para o espaço de entrada $\mathscr{H}$;
+\item Ordenação Topológica: O mapa de características $\Phi$ calculado pelo algoritmo SOM é ordenado de modo topológico, no sentido de que a localização espacial de um neurônio na grade corresponde a um domínio particular ou característica dos padrões de entrada.
+\item Casamento de Densidade: O mapa de características $\Phi$ reflete variações na estatísticas da distribuição de entrada: regiões no espaço de entrada $\mathscr{H}$ de onde vetores de amostras $x$ são retirados com uma alta probabilidade de ocorrência são mapeadas  para domínios maiores do espaço de saída $\mathscr{A}$, e portanto com melhor resolução que regiões em $\mathscr{H}$ das quais os vetores de amostra $x$ são retirados com uma baixa probabilidade de ocorrência.
+\item Seleção de Caracteristicas:A partir de dados do espaço de entrada com ua distribuição não-linear, o mapa auto-organizável é capaz de selecionar um conjunto das melhores características para aproximar a distribuição subjacente.
+\end{enumerate}
+
+
+
+

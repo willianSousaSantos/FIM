@@ -1,0 +1,315 @@
+\chapter{MODELOS OCULTOS DE MARKOV}
+\thispagestyle{plain}
+\quad Um modelo de Markov pode ser definido como um conjunto finito de estados ligados entre si por transições, formando uma máquina de estados. Estas transições estão ligadas por um processo estocástico .  Há ainda um outro processo estocástico associado a um modelo de Markov, que envolve as observações de saída de cada estado. Se somente as observações de saída forem visíveis a um observador externo ao processo, diz-se então que os estados estão ocultos. %, ou seja, o processo estocástico que envolve as transições de estado não é observavel.( aparentemente por isso que é oculto)
+
+%De forma simplificada, podemos dizer que processos estocásticos são processos aleatórios que dependem do tempo. ; Um processo estocástico é uma família de variáveis aleatórias indexadas por elementos t pertencentes a determinado intervalo temporal.Wipedia acho.).
+
+
+
+Um HMM é caracterizado por:
+
+\begin{itemize}
+
+\item  Um conjunto de estados $ S =  \{S_1, S_2, \ldots, S_{n-1}, S_n\} $, onde $n$ é o número de estados;
+
+\item Função de probabilidade de estado inicial $\pi = \{\pi_i\}$ .
+
+\begin{equation}
+\pi_i = P[q_1 = S_i ]~~\textrm{ }~ 1 \leq i \leq n 
+\end{equation}
+onde $q_1$ é o estado inicial $(t = 1)$.
+
+\item Função de probabilidade de transição A;
+
+\item Função de probabilidade de símbolos de saída B.
+
+\end{itemize}
+
+Considerando exclusivamente processos em que as probabilidades de transição não dependem do tempo e os HMMs são de primeira ordem, um HMM é considerado de primeira ordem quando a trasição do estado depende apenas da probabilidade do estado anterior mais recente. O conjunto de probabilidades de transição $A$ é definido por: 
+ \begin{equation}
+A = \{ a_{ij}\} 
+\end{equation}
+
+ \begin{equation}
+ a_{ij} =  P [q_{t-1} = S_i] [q_t = S_j]~~\textrm{ }~ 1 \leq i, j\leq n
+\end{equation}
+
+onde $a_{ij}$ é a probabilidade de ocorrer uma transição do estado $S_i$ para o estado $S_j$.\\
+Os coeficientes $a_{ij}$ devem obedecer às seguintes regras:
+
+\begin{equation}
+a_{ij} \geq 0~~\textrm{ }~ 1 \leq i,j \leq n 
+\end{equation}
+
+\begin{equation}
+\displaystyle \sum_{j=1}^n a_{ij} = 1~\textrm{ }~ 1 \leq i \leq n 
+\end{equation}
+
+A probabilidade de estar no estado $S_j$ no instante de tempo $t$ depende somente do instante de tempo $t_j$.\\
+
+
+\section{HMM e a função densidade de probabilidade}
+
+\quad Um HMM também pode ser classificado de acordo com a função densidade de probabilidade. 
+
+\subsection{Função densidade de probabilidade}
+\quad Uma variável aleatória é uma função cujo valor é um número real determinado por cada elemento em um espaço amostral. Dada uma variável aleatória $X$, dizemos que $f(x)$ é uma função densidade de probabilidade de $X$, se e somente se $f(x)$ atender as seguintes condições:
+
+$$
+\displaystyle f(x) \geq 0  \qquad a < x < b
+$$
+
+
+\begin{equation}
+ \int_a^b f(x)dx = 1 
+\end{equation}
+
+
+\subsection{HMM Discreto}
+\quad O número de possíveis símbolos de saída é finito \cite{fundRecFala}.
+ A probabilidade de emitir o símbolo $V_k$ no estado $S_i$ é dada por $b_i(k)$. As propriedades da função de probabilidade $B$ são:
+
+$$
+ \displaystyle  b_i (k) \geq 0 \qquad 1 \leq i \leq n  \qquad 1 \leq k \leq K
+$$
+
+\begin{equation}
+\displaystyle \sum_{k=1}^K b_i (k) = 1 \qquad 1 \leq i \leq n 
+\end{equation}
+
+As observações são discretas por natureza ou discretizadas através de uma técnica de quantização vetorial, gerando assim codebooks.
+ 
+
+
+\subsection{HMM Contínuo}
+
+\quad A função densidade de probabilidade é contínua. Geralmente uma função densidade elipticamente simétrica, tal como a função densidade de probabilidade Gaussiana \cite{fundRecFala}.
+ As observações são contínuas e a FDP contínua é  usualmente modelada como uma mistura finita de matrizes gaussianas multidimensionais.
+
+****************
+% DEFINIR AQUI A FDP A SER USADA (PROVAVELMENTE A GAUSSIANA CITADA EM  \cite{fundRecFala})
+
+
+\subsection{HMM Semicontínuo}
+
+\quad O modelo é um caso intermediário entre contínuo e o discreto. O conjunto função densidade probabilidade é o mesmo usado para todos os estados e todos os modelos. A probabilidade de emissão dos simbolos de saída é dada por :
+
+
+\begin{equation}
+\displaystyle b_j(O_t) =  \sum_{V_k \in \eta (O_t)}^-  c_j (k) f (O_t | V_k)   \qquad 1 \leq j \leq n 
+\end{equation}
+ onde:\\
+$O_t$ é o vetor de entrada\\
+$\eta(O_t)$ é o conjunto das funções densidade de probabilidade que apresentam os $M$ maiores valores de $f (O_t | V_k)$, $ 1 \leq M \leq K$\\
+$K$ é o número de funções densidade de probabilidade, ou seja, os símbolos de saída\\
+$V_k$ é o $k$-ésimo símbolo de saída\\
+$ c_j (k)$ é a probabilidade de emissão do símbolo $V_k$ no estado $S_j$\\
+$f (O_t | V_k)$ é o valor da $k$-ésima função densidade de probabilidade.
+
+
+
+\section{Topologia}
+
+\quad Uma maneira de classificar um HMM é de acordo com a estrutura de transição da matriz $A$ da cadeia de markov. Existem vários modelos de HMM, tal como o ergódico totalmente conectado onde qualquer estado pode ser alcançado com um único passo, o modelo de caminhos paralelos e o modelo "left-right", também chamado de modelo Bakis. Para o reconhecimento de fala este último é o mais usado \cite{fundRecFala}.%\\ *********COLOCAR AQUI UM MODELO DE BAKIS FAZER A MATRIZ
+
+\section{Os problemas a serem resolvidos}
+\quad O HMM possui três problemas básicos, que são:
+\begin{enumerate}
+\item Problema de avaliação: Dada a sequência de observação $O = (o_1, o_2, o_3, ..., o_n)$ e o modelo $\lambda = (A, B, \pi)$, como calcular eficientemente $P(o| \lambda)$.
+\item Problema da busca da melhor sequência de estados.
+\item Problema de treinamento: como ajustar os parâmetros do modelo $\lambda(A, B, \pi)$ para maximizar $P(o|\lambda)$.
+\end{enumerate}
+
+O problema 1, ou seja, o problema da avaliação pode ser solucionado através do procedimento \textit{Forward-Backward}. O segundo problema é solucionado com a aplicação do algoritmo de \textit{Viterbi} e o terceiro e último problema pode ser otimizado aplicando um procedimento iterativo como o método de \textit{Baum-Welch}. Nas seções \ref{secFB}, \ref{secViterbi} e \ref{secBW} faz-se uma explicação sobre os procedimentos para a solução dos problemas 1, 2 e 3 respectivamente.
+
+\quad Para ilustrar melhor os três problemas básicos, iremos usar o seguinte exemplo: é colocado um dispositivo de captação de áudio, em um local onde muitas pessoas trafegam, o objetivo é saber se alguma pessoa diz alguma palavra que remete socorro, porém, a pessoa que colocou o dispositivo, não sabe as palavras que serão ditas, retorno será somente um alarme, de perigo ou não perigo .
+ Temos então que a sequência de estados observáveis é  $O = \{gato, cafe, socorro, ajuda\}$. E o vetor de probabilidade inicial é : $\pi = [0,5 \qquad 0,5]$. A matriz de transição $A$ e a matriz de probabilidade de emissão $B$ são:
+$$A=\left[ \begin{array}{ll}
+ 0,8 & 0,2 \\
+ 0,7 & 0,3 \\
+
+ \end{array} \right]$$
+
+$$B=\left[ \begin{array}{llllll}
+ 0,05 & 0,6 & 0,05 & 0,3\\
+ 0,32 & 0,25 & 0,35 & 0,3\\
+ \end{array} \right]$$
+
+\subsection{Foward-Backward}
+\label{secFB}
+Com a resolução do problema 1 podemos responder à algumas perguntas, se dado um modelo e uma sequência de observações, como podemos  saber de que a sequência observada foi produzido pelo modelo? ou, podemos ver essa  solução de outra forma,  um modelo é satisfatório para determinada entrada de observações?
+ \begin{itemize}
+\item Inicialização:\\
+\begin{equation}
+\displaystyle  \alpha_1 (i) = \pi_i b_i (O_1), \qquad 1 \leq i \leq N \\
+\end{equation}
+
+\item Indução:\\
+$
+\displaystyle \alpha_t + 1 (j) = \sum\limits_{ i = 1}^{N} \Big[\alpha_t(i) a_{ij} \Big]b_j (O_t + 1), \qquad 2 \leq t \leq T\\
+%\displaystyle \Psi_t (j) = arg\max\limits_{1 \leq i \leq N}\Big[\delta_{t-1} (i)a_{ij}\Big], \qquad 1\leq j \leq N
+$
+
+\item Término:\\
+$
+P(O| \lambda) =  \sum\limits_{ i = 1}^{N} \Big[\alpha_t(i) \Big]\\
+$
+
+\end{itemize}
+
+\subsection{Viterbi}
+\label{secViterbi}
+O algoritmo de Viterbi é um algoritmo de programação dinâmica usado para encontrar a sequência de estados ocultos ótima. Dado uma sequência de estados ocultos de um HMM, o algoritmo de viterbi calcula a melhor sequência de estados baseados nas probabilidades de transição. Este algoritmo foi proposto em 1967 por Andrew Viterbi para a decodificação de códigos convolucionais em links de comunicação ruidosos.  O algoritmo também possui aplicações  em redes CDMA e GSM, modem dial-up, satélites, síntese de fala, linguística computacional e bioinformática. Em telecomunicação, um código convolucional é um tipo de código corretor de erro em que cada conjunto de $m$ símbolos é transformado em um conjunto de $n$ símbolos.\\
+Algoritmo
+\begin{itemize}
+\item Inicialização:\\
+\begin{equation}
+\delta_1 (i) = \pi_i b_i (O_1), \qquad 1 \leq i \leq N \\
+\end{equation}
+$
+\quad \Psi_1 (i) = 0
+$
+
+\item Recursão:\\
+\begin{equation}
+\displaystyle \delta_t (j) = \max\limits_{1 \leq i \leq N} \Big[\delta_{t-1}(i) a_{ij} \Big]b_j (O_t), \qquad 2 \leq t \leq T\\
+\end{equation}
+\begin{equation}
+\displaystyle \Psi_t (j) = arg\max\limits_{1 \leq i \leq N}\Big[\delta_{t-1} (i)a_{ij}\Big], \qquad 1\leq j \leq N
+\end{equation}
+
+\item Término:\\
+\begin{equation}
+\displaystyle P^* =\max\limits_{1 \leq i \leq N}  \Big[\delta_{T(i)}\Big] 
+\end{equation}
+\begin{equation}
+\displaystyle G^*_T = arg\max\limits_{1 \leq i \leq N}  \Big[\delta_{T(i)}\Big]
+\end{equation}
+
+
+\end{itemize}
+
+A inicialização do algoritmo:\\
+$\delta_1 (1) = 0,5 * 0,05 = 0,025$ \\
+$\delta_1 (2) = 0,5 * 0,35 = 0,175$ \\
+
+$\quad \Psi_1 (1) = 0$
+$\quad \Psi_1 (2) = 0$
+$\quad \Psi_1 (3) = 0$\\
+
+\begin{multicols}{2}
+Passo de recursão:\\
+
+Para $t=2$ e $j = 1$:\\
+$\displaystyle \delta_2 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i1} \Big]b_1 (O_2)$\\
+$\delta_1(1)_{a_{11}} = 0,025 * 0,8 = 0,02$\\
+$\delta_1(2)_{a_{21}} = 0,175 * 0,7 = 0,1225$ \\
+
+
+Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(1) = 0,1225 * 0,05 = 0,006125$\\
+$\Psi_2(1) = 0$\\
+
+Para $t=2$ e $j = 2$:\\
+$\displaystyle \delta_2 (2) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i2} \Big]b_2 (O_2)$\\
+$\delta_1(1)_{a_{12}} = 0,25 * 0,2 = 0,005$\\
+$\delta_1(2)_{a_{22}} = 0,175 * 0,3 = 0,0525$\\ 
+
+
+ 
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(2) = 0,0525 * 0,32 = 0,0168$\\ 
+$\Psi_2(2) = 0$\\
+
+Para $t=3$ e $j = 1$:\\
+$\displaystyle \delta_2 (3) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i3} \Big]b_3 (O_2)$\\
+$\delta_1(1)_{a_{11}} = 0,006125 * 0,8 = 0,0049$\\
+$\delta_1(2)_{a_{21}} = 0,0168 * 0,7 = 0,01176$\\ 
+
+ 
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(3) = 0,01176 * 0,6 = 0,01176$\\ 
+$\Psi_2(3) = 1$\\
+
+Para $t=3$ e $j = 2$:\\
+$\displaystyle \delta_3 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i1} \Big]b_1 (O_3)$\\
+$\delta_2(1)_{a_{12}} = 0,006125 * 0,2 = 0,001225$\\
+$\delta_2(2)_{a_{22}} = 0,0168 * 0,3 = 0,00504$\\ 
+
+
+Substituindo o $\delta$ encontrado temos:\\
+$\delta_3(1) = 0,00504 * 0,25 = 0,00126$\\ 
+ $\Psi_3(1) = 1$\\
+
+Para $t=4$ e $j = 1$:\\
+$\displaystyle \delta_3 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i2} \Big]b_2 (O_3)$\\
+$\delta_2(1)_{a_{11}} = 0,007056 * 0,8 = 0,0056448$\\
+$\delta_2(2)_{a_{21}} = 0,00126 * 0,7 = 0,000882$\\
+ 
+Substituindo o $\delta$ encontrado temos:\\
+ $\delta_3(2) = 0,0056448 * 0,3 = 0,0016934$\\
+$\Psi_3(2) = 0$\\
+
+Para $t=4$ e $j = 2$:\\
+$\displaystyle \delta_2 (2) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i3} \Big]b_3 (O_3)$\\
+$\delta_2(1)_{a_{12}} = 0,007056 * 0,2 = 0,0014112$\\
+$\delta_2(2)_{a_{22}} = 0,00126 * 0,3 = 0,000378$\\ 
+
+
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_3(3) = 0,0014112 * 0,3 = 0,00042336$\\
+$\Psi_3(3) = 2$\\
+
+\end{multicols}
+
+
+
+
+\subsection{Baum-Welch}
+\label{secBW}
+O terceiro e de longe o mais difícil, problema de HMM's é determinar um método para ajustar os parâmetros do modelo (A, B PI) para satisfazer um determinado critério de otimização.
+
+\begin{equation}
+ \xi_t (i,j) = \frac {\alpha _t (i) a_{ij} b_{j} (o_{t+1}) \beta _{t+1}(j)} {\sum\limits_{ i = 1}^{N} \sum\limits_{ j = 1}^{N} \alpha _{t} (i) a_{ij} b_{j} (o_{t+1} \beta _{t+1} (j)}
+\end{equation}
+ onde, defineremos:\\
+
+$ \xi_t (i,j)$ = Probabilidade de estar no estado i, no tempo t.\\
+$ \pi _{i} $= Frequência esperada (numero de vezes) no estado i no tempo (t = 1) =  $\Upsilon$ 1(i) \\
+
+$ \alpha _{ij}= \frac {número  esperado de transições do estado i para o estado j} {numero esperado  de transicoes do estado i} $\\
+        
+                     = $ \frac {\sum\limits_{ t = 0}^{T- 1}\xi_t (i,j) } { \sum\limits_{ t = 0}^{T - 1} \Upsilon t(i)} $\\  
+\\
+$ b _{ij} (k) = \frac {numero esperado de vezes no estado j e observando o simbolo v_{k}} {numero de vezes esperado no estado j}  $ \\
+\\
+	         = $\frac {s.t O _{t=y_{k}}  \sum\limits_{ t = 0}^{T}  \Upsilon t(j)}{\sum\limits_{ t = 0}^{T}\Upsilon t(j)}$
+
+\quad 
+Shell: "Shell pode ser definido como o interpretador de instruções e comandos, no nosso caso, do Linux. Quando o usuário ou sistema executa qualquer comando, o Shell é responsável pela correta 'interpretação' deste. Não é para menos que ele é conhecido como 'interpretador de comandos'. "
+\quad https://www.vivaolinux.com.br/artigo/O-que-e-Shell-Script
+\quad 
+\quad Phyton: " Python é uma linguagem livre e multiplataforma. Isso significa que os programas escritos em uma plataforma serão executados sem nenhum problema na maioria das plataformas existentes sem nenhuma modificação. E, caso a plataforma objetivo não tenha uma versão de Python, desenvolvedores têm a liberdade de estudar e modificar o código da linguagem para fazer com que ela rode onde quer que seja."
+\quad http://pyscience-brasil.wikidot.com/python:python-oq-e-pq
+\quad 
+\begin{table}[h]
+\caption {Tabela Eficiência}
+\begin {tabular}{r|lr}
+nome Algoritmo & ruido & Sem ruido\\
+
+\hline Força Bruta & 90\%&70\%\\
+\hline HMM &10\% &80\%\\
+\hline SOM &40\%&20\%\\
+\end {tabular}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
