@@ -1,0 +1,176 @@
+\chapter{RESULTADOS}
+\thispagestyle{plain}
+\label{chap:anal}
+
+\quad Foram estudados e avaliados três diferentes abordagens para o reconhecimento de palavras, sempre levando em consideração o contexto da aplicação e o caso de teste. 
+O trabalho foi dividido em duas etapas na primeira etapa ocupou-se da captura e tratamento do sinal e extração de características.\\ 
+\quad Foram avaliados um método estocástico (HMM), um método determinístico (correlação entre vetores) e um método de inteligência articial (SOM). 
+\begin{table}[H]
+\centering
+\caption{Taxa de acertos do método determinístico}
+\label{tab:comp}
+\smallskip
+\begin{tabular}{|l|l|l|l|}
+\hline
+ Palavra & Ambiente Silencioso & Ambiente Ruidoso\\[0.5ex]
+\hline
+
+Ajuda & 70\% &  60\%\\[0.5ex]
+\hline
+
+Assalto & 80\% &  40\% \\[0.5ex]
+\hline
+
+Ladrão & 60\% & 34\% \\[0.5ex]
+\hline
+
+Polícia & 90\% & 60\%\\[0.5ex]
+\hline
+
+Socorro & 90\% & 80\%\\[0.5ex]
+\hline
+
+Média & 78\% & 54,8\% \\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
+
+A tabela \ref{tab:comp} mostra a porcentagem de acerto para cada palavra usando o método determinístico. Cada palavra foi inserida dez vezes por um número aleatório de pessoas  em um ambiente com pouco ruído a média da taxa de acertos foi de 78\% e em um ambiente com muito ruído esta taxa caiu para 66,4\%.
+
+\begin{table}[H]
+\centering
+\caption{Taxa de acertos do método determinístico}
+\label{tab:comp2}
+\smallskip
+\begin{tabular}{|l|l|l|}
+\hline
+ Palavra & Isolado & Contínuo \\
+\hline
+
+Ajuda & 60\% &  35\% \\
+\hline
+
+Assalto & 40\% &  35\% \\
+\hline
+
+Ladrão & 30\% & 34\%\\
+\hline
+
+Polícia & 60\% & 37\% \\
+\hline
+Socorro & 80\% & 40\%\\
+\hline
+
+Média & 59\% & 36,6\% \\
+\hline
+\end{tabular}
+\end{table}
+
+
+A tabela \ref{tab:comp2} mostra a porcentagem de acerto para cada palavra usando o método determinístico com abordagem contínua. Cada palavra foi inserida vinte vezes por um número aleatório de pessoas  em um ambiente ruidoso. A média da taxa de acertos foi de 45,1\% .
+
+\begin{table}[H]
+\centering
+\caption{Taxa de acertos do algoritmo de Kohonen}
+\label{tab:comp3}
+\smallskip
+\begin{tabular}{|l|l|l|}
+\hline
+ Palavra & Ambiente Silencioso & Ambiente Ruidoso\\
+\hline
+
+Ajuda & 70\% &  65 \% \\
+\hline
+
+Assalto & 80\% &  55 \% \\
+\hline
+Ladrão & 75\% &  65 \% \\
+\hline
+
+Polícia & 75 \% & 65\% \\
+\hline
+
+Socorro & 80\% & 70\% \\
+\hline
+
+Média & 76\% & 64\% \\
+\hline
+\end{tabular}
+\end{table}
+
+A tabela \ref{tab:comp3} mostra  a porcentagem de acerto para cada palavra usando o algoritmo SOM. Cada palavra foi inserida dez vezes por um número aleatório de pessoas  em um ambiente com pouco ruído a média da taxa de acertos foi de 76\% e em um ambiente com muito ruído esta taxa caiu para 64\%.
+
+\begin{table}[H]
+\centering
+\caption{Comparação entre os métodos}
+\label{tab:comp5}
+\smallskip
+\begin{tabular}{|l|l|l|l|}
+\hline
+ -- & Determinístico & HMM & SOM\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Taxa de acerto & 66,4\% &  -- &  70\%\\[0.5ex]
+\hline
+&&&\\[-2ex]
+Tempo de execução & rápido &  viciada &  médio \\[0.5ex]
+\hline
+&&&\\[-2ex]
+Custo computacional & baixo & alto & alto\\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
+
+A tabela \ref{tab:comp5} traz uma comparação entre os métodos estudados. O algorimto HMM, como foi explicado no capítulo \ref{chap:hmm}, é baseado em probabilidade e nas transições de um estado a outro. Para garantir a homogeneidade do sistema
+os valores de transição dos estados são iguais isso gera um vício. Sempre que uma palavra é identificada não ocorre transição de estados, retornando sempre o estado anterior.
+
+Para o caso estudado neste trabalho podemos concluir que o  método determinístico foi o que se mostrou mais eficiente, pois este consome menos recursos computacionais e possui uma taxa de acerto satisfatória.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+

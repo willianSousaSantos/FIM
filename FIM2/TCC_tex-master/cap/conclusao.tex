@@ -1,0 +1,13 @@
+\chapter{CONCLUSÃO}
+\thispagestyle{plain}
+\label{chap:conc}
+\quad O presente trabalho teve como objetivo estudar algoritmos para reconhecimento de palavras isoladas em fluxo contínuo. Os métodos estudados deveriam ter a capacidade de reconhecer  uma palavra isolada independente de locutor, livre de contexto em um ambiente qualquer. Também deveria ser considerado os rescursos computacionais usados. Uma solução que requer pouca memória e com rápido tempo de processamento. Com base nisto podemos concluir que o método determinístico foi o que apresentou melhores resultados, pois o tempo de execução deste é baixo e requer poucos recursos computacionais podendo ser utilizado em
+dispositivos com baixo poder de processamento.
+
+\quad Durante a etapa de captação e processamento do sinal a qualidade do hardware usado tem grande impacto sobre as caratecterísticas extraídas. Em um sistema ideal os filtros devem ser implementados em hardware o que garante maior processamento e robustez aos ruidos. As caraterísticas usadas também devem ser analisadas, métodos como \textit{PNCC, RASTA-PLP, PLP, LPC, DBNF} são exemplos de descritores de sinal, tal como MFCC, e podem ser analisados em trabalhos futuros.
+
+\quad A comparação entre o padrão buscado e os padrões armazenados é uma fase independente, levando em consideração as 
+características usadas para o pré-processamento do sinal, ou seja, é possível aplicar diferentes algoritmos nesta fase. As técnicas 
+aplicadas durante todo o processo de reconhecimento que classificam o sistema de reconhecimento. Geralmente são empregados redes neurais artificiais ou  algoritmos probabilísticos, como o HMM. Também são aplicadas técnicas determinísticas onde a  classificação é realizada através de  fórmulas matemáticas, estas possuem processamento rápido, porém são mais dependentes da variação do sinal (timbre de voz, altura da voz) e sensíveis ao ruído.\\
+
+\quad Por fim gostariamos de sugerir para trabalhos futuros, além dos  descritores de voz citados acima, a implementação de um algoritmo para detecção de atividade de voz como citado em \cite{vad}, RNAs multicamadas e o Modelo de Misturas Gaussianas (GMM).

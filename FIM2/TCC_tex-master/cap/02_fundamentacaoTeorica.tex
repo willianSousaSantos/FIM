@@ -1,0 +1,144 @@
+\chapter{FUNDAMENTAÇÃO TEÓRICA}
+\label{chap:referencial_teorico}
+\thispagestyle{plain}
+Este capítulo traz uma revisão bibliográfica dos sistemas de reconhecimento de fala e processamento de sinais digitais, uma vez que estes são os assuntos que constituem a base deste trabalho.
+
+De acordo com \cite{fundRecFala}, os  sistemas de reconhecimento de fala podem ser classificados em três grupos de acordo com a técnica utilizada. Estes grupos são :
+\begin{itemize}
+\item Reconhecedores por inteligência artificial;
+\item Reconhecedores por comparação de padrões;
+\item Reconhecedores baseados na análise acústico-fonética.
+\end{itemize}
+\section{Sistemas de reconhecimento de fala }
+
+\label{sec:sistemasdereconhecimentodefala}
+
+
+\subsection{Reconhecedores baseados em inteligência artificial}
+
+Os sistemas de reconhecimento de fala que utilizam a inteligência artificial usam propriedades tanto dos reconhecedores por comparação de padrões quanto dos reconhecedores baseados na análise acústico-fonética. Sistemas com redes neurais são encaixados nesta classe. As redes Multilayer Perceptron usam uma matriz de ponderação que representa as conexões entre os nós da rede, e cada saída está associada a uma unidade a ser reconhecida \cite{kluwerNeural}.
+
+A abordagem de inteligência artificial  baseia-se no processo humano natural de ouvir, analisar e tomar uma decisão sobre as características acústicas medidas para reconher a fala. Faz parte do processo de reconheciemento de fala pela abordagem de inteligência artificial o processo de segmentação e rotulagem usado na análise acústico-fonética  \cite{fundRecFala}. Esta abordagem aplica o conceito de que o conhecimento é dinâmico  e os modelos devem adaptar-se frequentemente. 
+
+\subsection{Reconhecedores por comparação de padrões}
+
+Estes reconhecedores usam o príncipio de que o sistema foi treinado para reconhecer os padrões. Os sistemas por reconhecimento de padrões possuem duas fases diferentes :
+\begin{itemize}
+\item Treinamento;
+\item Reconhecimento.
+\end{itemize}
+
+Durante a fase de treinamento são criados padrões de referência para o sitema. Na fase de reconhecimento compara-se os padrões obtidos com os padrões de referência criados na fase anterior e calcula-se uma medida de similaridade entre os padrões. O padrão mais similar ao desconheido é escolhido como reconhecido. Os sistemas que se baseiam nos Modelos Ocultos de Markov (HMM) se encaixam nesta categoria.\\
+
+Dentre as diversas razões para usar a abordagem de comparação de padrões para reconheimento de fala pode-se citar a simplicidade de uso, por ser um método de fácil entendimento que possui uma rica fundamentação matemática e é amplamente utilizado.  Destaca-se também a robustez, como um método robusto e invariante para diferentes vocábularios, algoritmos de comparação de padrão e regras de decisão. Isto torna esta abordagem apropriada para uma vasta gama de unidades de fala, como fonemas, palavras isoladas ou frases  \cite{fundRecFala}. 
+
+\subsection{Reconhecedores baseados na análise acústico-fonética}
+
+Os sistemas baseados na análise acústico-fonética decodificam o sinal de fala  baseados nas características acústicas deste sinal e na relação entre elas \cite{kluwer}. Os sistemas de análise desta classe devem considerar propriedades acústicas invariantes. Entre estas características estão a classificação entre sonoro e não sonoro, segmentação do sinal da fala, detecção das características que descrevem as unidades fonéticas e escolha do padrão que mais corresponde à sequência de unidades fonéticas.\\
+
+Os reconhecedores baseados na análise acústico-fonética trabalham em duas etapas. O primeiro passo na análise acústico fonética é chamado de fase de segmentação e rotulagem \cite{fundRecFala}. Este passo envolve a segmentação do sinal da fala em regiões discretas, no tempo, onde as propriedades acústicas do sinal são representadas por um único fonema, ou estado. Em seguida uma ou mais etiqueta fonética é associada a cada região segmentada de acordo com as propriedades acústicas. O segundo passo para o reconhecimento tenta determinar uma palavra válida a partir da sequência de etiquetas fonéticas obtidas na fase anterior. As palavras são obtidas a partir de um determinado vocabulário, as palavras obtidas fazem sentido sintático e tem significado semântico.
+
+\section{Processamento digital de sinais}
+ 
+De acordo com \cite{sig} um sinal é qualquer função associada a um fenômeno físico, econômico ou social e que transporta  algum tipo de informação sobre ele. Pode ser definido como uma descrição quantitativa de um dado fenômeno. A voz é um exemplo de sinal.
+
+Os sinais podem ser classificados de diferentes formas de acordo com suas características  e com o tipo de domínio e contradomínio. Segundo \cite{sig} esta classificação pode ser feita de acordo com as seguintes características:
+\begin{enumerate}
+\item Variável independente: o sinal é contínuo se a variável $t \in \mathbb{R}$ e discreto se $t \in \mathbb{Q}$. Os pontos $t_n, n \in \mathbb{Z}$ são chamados de instantes de amostragem. Sinal amostrado é o sinal discreto obtido por amostragem de um sinal contínuo.
+
+\item Amplitude: os sinais podem ser classificados de acordo com a amplitude em :
+\begin{itemize}
+\item Analógicos: sinal contínuo cuja amplitude pode assumir uma gama contínua de valores;
+\item Quantificados: sinal cuja amplitude pode assumir, apenas, uma gama finita de valores;
+\item Digitais: sinal resultante da codificação de um sinal amostrado e quantificado. A codificação consiste em atribuir a cada valor obtido por amostragem e quantificação  um código.
+\end{itemize} 
+\item Duração: os sinais cujo dominio é limitado dizem-se de duração finita, os restantes são de duração infnita. Os sinais de duração finita tambem são chamados de janela.
+\item Reprodutibilade: um sinal é dito determinístico se repetindo a mesma experiência obtém-se o mesmo resultado, caso isso não seja possível  então trata-se de um sinal aleatório.
+\item Periodicidade: os sinais determinísticos classificam-se ainda em aperiódicos e periódicos. Os sinais aperiódicos não são repetitivos. Os sinais periódicos são repetitivos e possuem a relação $x(t) = x(t \bar{+} T) \quad \forall \quad t$, onde $T$ é o período. Quando $T < 2 \pi$ a involvente final do sinal periódico $x(t)$ não coincide com a extensão periódica do sinal base $x_b(t)$ ocorre o fenômeno chamado \textit{aliasing}. O fenômeno de aliasing é importante na conversão discreto-contínua e verifica-se no domínio da frequência.
+\item Morfologia: formas simétricas a um eixo ou outro. Os sinais pares são simétricos ao eixo das ordenadas. Os sinais impares são simétricos ao eixo das abscissas.
+\item Caráter : outras medidas são consideradas. Um sinal pode ter carater escalar, vetorial. Por exemplo, o sinal de saída de sensores é um sinal sensorial.
+\end{enumerate}
+
+A análise frequencial moderna é um conjunto de técnicas matemáticas e ou físicas que permite  obter o conteúdo frequêncial de qualquer sinal, a que se chama de \textit {espectro} . O processo de obtenção de espectro chama-se \textit {análise espectral}. O processo numérico usado para determinar o espectro é chamado de  \textit {estimação espectral}. A estimação espectral é feita em sinais de fonte fisíca, como a voz, durante um intervalo de tempo finito. Na prática o conteúdo frequêncial de um dado sinal não é uniforme. Assume valores significativos em intervalos chamados bandas.  A Tabela \ref{tab:banda}
+mostra alguns sinais e suas bandas.
+
+\begin{table}[H]
+\centering
+\caption{Bandas ocupadas por alguns sinais}
+\label{tab:banda}
+\smallskip
+\begin{tabular}{|l|l|l|}
+\hline
+Sinal  & de & a\\[0.5ex]
+\hline
+&&\\[-2ex]
+Eletrocardiograma& 0 Hz & 150 Hz \\[0.5ex]
+\hline
+&&\\[-2ex]
+Eletroencefalograma& 0 Hz & 100 Hz\\[0.5ex]
+\hline
+&&\\[-2ex]
+Voz & 100 Hz & 4000 Hz\\[0.5ex]
+\hline
+&&\\[-2ex]
+Ruído do vento& 100 Hz &1000 Hz \\[0.5ex]
+\hline
+&&\\[-2ex]
+Ruído de tremor de terra& 0.01 Hz& 10 Hz \\[0.5ex]
+\hline
+&&\\[-2ex]
+Radiodifusão& 0.03 MHz& 3 MHz\\[0.5ex]
+\hline
+&&\\[-2ex]
+Onda curta& 3 GHz & 30 GHz\\[0.5ex]
+\hline
+&&\\[-2ex]
+Radar, satélite, comun. espaciais& 300 GHz & 300 THz \\[0.5ex]
+\hline
+&&\\[-2ex]
+Luz visível& 370 THz& 770 THz \\[0.5ex]
+\hline
+\end{tabular}
+\end{table}
+
+
+ A designação de filtro habitualmente usada em referência aos sistemas lineares, deriva da possibilidade de certos sistemas eliminarem ou atenuarem fortemente certas bandas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%alguns exemplos de citação:\\
+%\cite{berquo1980fatores}\\
+%\cite{santos1980dinamica}\\
+%\cite{NBR6023:2002}\\
+%\cite{NBR14724:2005}\\
+%\cite{NBR10520:2002}\\
+%\cite{lessa2004manual}\\
+%\cite{rey2000planejar}\\
+%\cite{rajagopalan2003identidade}\\
+%\cite{flemming1999calculo}\\
+%\cite{gonccalves2}\\
+%\cite{salgado2002nutriccao}

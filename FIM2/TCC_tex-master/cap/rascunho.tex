@@ -1,0 +1,91 @@
+
+\quad 
+Shell: "Shell pode ser definido como o interpretador de instruções e comandos, no nosso caso, do Linux. Quando o usuário ou sistema executa qualquer comando, o Shell é responsável pela correta 'interpretação' deste. Não é para menos que ele é conhecido como 'interpretador de comandos'. "
+\quad https://www.vivaolinux.com.br/artigo/O-que-e-Shell-Script
+\quad 
+\quad Phyton: " Python é uma linguagem livre e multiplataforma. Isso significa que os programas escritos em uma plataforma serão executados sem nenhum problema na maioria das plataformas existentes sem nenhuma modificação. E, caso a plataforma objetivo não tenha uma versão de Python, desenvolvedores têm a liberdade de estudar e modificar o código da linguagem para fazer com que ela rode onde quer que seja."
+\quad http://pyscience-brasil.wikidot.com/python:python-oq-e-pq
+\quad 
+\begin{table}[h]
+\caption {Tabela Eficiência}
+\begin {tabular}{r|lr}
+nome Algoritmo & ruido & Sem ruido\\
+
+\hline Força Bruta & 90\%&70\%\\
+\hline HMM &10\% &80\%\\
+\hline SOM &40\%&20\%\\
+\end {tabular}
+\end{table}
+
+A inicialização do algoritmo:\\
+$\delta_1 (1) = 0,5 * 0,05 = 0,025$ \\
+$\delta_1 (2) = 0,5 * 0,35 = 0,175$ \\
+
+$\quad \Psi_1 (1) = 0$
+$\quad \Psi_1 (2) = 0$
+$\quad \Psi_1 (3) = 0$\\
+
+\begin{multicols}{2}
+Passo de recursão:\\
+
+Para $t=2$ e $j = 1$:\\
+$\displaystyle \delta_2 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i1} \Big]b_1 (O_2)$\\
+$\delta_1(1)_{a_{11}} = 0,025 * 0,8 = 0,02$\\
+$\delta_1(2)_{a_{21}} = 0,175 * 0,7 = 0,1225$ \\
+
+
+Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(1) = 0,1225 * 0,05 = 0,006125$\\
+$\Psi_2(1) = 0$\\
+
+Para $t=2$ e $j = 2$:\\
+$\displaystyle \delta_2 (2) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i2} \Big]b_2 (O_2)$\\
+$\delta_1(1)_{a_{12}} = 0,25 * 0,2 = 0,005$\\
+$\delta_1(2)_{a_{22}} = 0,175 * 0,3 = 0,0525$\\ 
+
+
+ 
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(2) = 0,0525 * 0,32 = 0,0168$\\ 
+$\Psi_2(2) = 0$\\
+
+Para $t=3$ e $j = 1$:\\
+$\displaystyle \delta_2 (3) = \max\limits_{1 \leq i \leq N} \Big[\delta_{1}(i) a_{i3} \Big]b_3 (O_2)$\\
+$\delta_1(1)_{a_{11}} = 0,006125 * 0,8 = 0,0049$\\
+$\delta_1(2)_{a_{21}} = 0,0168 * 0,7 = 0,01176$\\ 
+
+ 
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_2(3) = 0,01176 * 0,6 = 0,01176$\\ 
+$\Psi_2(3) = 1$\\
+
+Para $t=3$ e $j = 2$:\\
+$\displaystyle \delta_3 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i1} \Big]b_1 (O_3)$\\
+$\delta_2(1)_{a_{12}} = 0,006125 * 0,2 = 0,001225$\\
+$\delta_2(2)_{a_{22}} = 0,0168 * 0,3 = 0,00504$\\ 
+
+
+Substituindo o $\delta$ encontrado temos:\\
+$\delta_3(1) = 0,00504 * 0,25 = 0,00126$\\ 
+ $\Psi_3(1) = 1$\\
+
+Para $t=4$ e $j = 1$:\\
+$\displaystyle \delta_3 (1) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i2} \Big]b_2 (O_3)$\\
+$\delta_2(1)_{a_{11}} = 0,007056 * 0,8 = 0,0056448$\\
+$\delta_2(2)_{a_{21}} = 0,00126 * 0,7 = 0,000882$\\
+ 
+Substituindo o $\delta$ encontrado temos:\\
+ $\delta_3(2) = 0,0056448 * 0,3 = 0,0016934$\\
+$\Psi_3(2) = 0$\\
+
+Para $t=4$ e $j = 2$:\\
+$\displaystyle \delta_2 (2) = \max\limits_{1 \leq i \leq N} \Big[\delta_{2}(i) a_{i3} \Big]b_3 (O_3)$\\
+$\delta_2(1)_{a_{12}} = 0,007056 * 0,2 = 0,0014112$\\
+$\delta_2(2)_{a_{22}} = 0,00126 * 0,3 = 0,000378$\\ 
+
+
+ Substituindo o $\delta$ encontrado temos:\\
+$\delta_3(3) = 0,0014112 * 0,3 = 0,00042336$\\
+$\Psi_3(3) = 2$\\
+
+\end{multicols}
